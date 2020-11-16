@@ -10,8 +10,18 @@ class ProfilesController extends Controller
 {
     public function index(User $user) // use App\User; 
     {
+
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
-        return view('profiles.index', compact('user', 'follows'));
+
+        $following_ids = $user->following()->pluck('profiles.user_id'); 
+        $following_list = User::whereIn('id', $following_ids)->get();
+
+        $followers_ids = $user->profile->followers()->pluck('users.id'); 
+        $followers_list = User::WhereIn('id', $followers_ids)->get();
+
+        return view('profiles.index', compact('user', 'follows', 'following_list', 'followers_list'));
+
+        
     }
 
     public function edit(User $user)

@@ -66,6 +66,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comments::class);
+    }
+
+
+
 }
 
 

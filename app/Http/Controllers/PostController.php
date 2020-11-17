@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Comments;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -51,7 +52,10 @@ class PostController extends Controller
 
     public function show(\App\Post $post) //fetch whole post instead of id
     {
-        return view('posts.show', compact('post'));
+        $post_id = $post->id;
+        $comments = Comments::where('post_id', $post_id)->get();
+            
+        return view('posts.show', compact('post', 'comments'));
     }
 
 }

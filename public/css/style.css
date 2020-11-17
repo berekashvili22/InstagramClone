@@ -1,0 +1,40 @@
+.profile_modal_users_list {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profile_modal_users_list:hover {
+    color: rgb(8, 8, 8);
+    /* text-decoration: none; */
+}
+
+/* posts */
+
+.post-image {
+    background: none;
+}
+
+.post-image:hover {
+    border: 1px solid rgba(0, 0, 0, 0);
+    opacity: 0.9;
+}
+
+.comments {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+}
+
+.comment-user {
+    color: black;
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+/* to hide scroller */
+.comments::-webkit-scrollbar { 
+    display: none; 
+    }

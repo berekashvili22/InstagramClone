@@ -14,12 +14,12 @@ class ProfilesController extends Controller
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
         $following_ids = $user->following()->pluck('profiles.user_id'); 
-        $following_list = User::whereIn('id', $following_ids)->get();
+        $following_users = User::whereIn('id', $following_ids)->get();
 
         $followers_ids = $user->profile->followers()->pluck('users.id'); 
-        $followers_list = User::WhereIn('id', $followers_ids)->get();
+        $follower_users = User::WhereIn('id', $followers_ids)->get();
 
-        return view('profiles.index', compact('user', 'follows', 'following_list', 'followers_list'));
+        return view('profiles.index', compact('user', 'follows', 'following_users', 'follower_users'));
 
         
     }
@@ -62,5 +62,4 @@ class ProfilesController extends Controller
         return redirect("/profile/{$user->id}"); 
     }
 }
-
 

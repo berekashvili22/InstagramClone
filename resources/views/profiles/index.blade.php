@@ -52,11 +52,12 @@
             </div>
         </div>
     </div>
+    <hr>
     <div class="row pt-5">
         @foreach ($user->posts as $post)
-        <div class="col-4 pb-4">
+        <div class="post-container col-4 mb-4">
             <a href="/p/{{ $post->id }}">
-                <img src="/storage/{{ $post->image }}" class="w-100" alt="">
+                <img src="/storage/{{ $post->image }}" class="post-image w-100" alt="">
             </a>
         </div> 
         @endforeach 
@@ -77,11 +78,13 @@
                     <div class="scrollbar scrollbar-lady-lips">
                         <div class="force-overflow">
                             <div class="modal-body">
-                                @foreach ($following_list as $following_user)
-                                <div class="col-1 d-flex align-items-center">
+                                @foreach ($following_users as $following_user)
+                                <div class="col-1 d-flex align-items-center mb-3">
                                     <img src="{{ $following_user->profile->profileImage() }}" class="rounded-circle mr-2" style="width: 40px" alt="">
-                                    <p class="font-weight-bold pt-3">{{ $following_user->username }}</p>
-                                </div>   
+                                    <a class="profile_modal_users_list"  href="/profile/{{ $following_user->id }}">
+                                        {{ $following_user->username }}
+                                    </a>
+                                </div>     
                                 @endforeach
                             </div>
                         </div>
@@ -104,10 +107,12 @@
                     </button>
                     </div>
                     <div class="modal-body">
-                        @foreach ($followers_list as $following_user)
-                        <div class="col-1 d-flex align-items-center">
-                            <img src="{{ $following_user->profile->profileImage() }}" class="rounded-circle mr-2" style="width: 40px" alt="">
-                            <p class="font-weight-bold pt-3">{{ $following_user->username }}</p>
+                        @foreach ($follower_users as $follower_user)
+                        <div class="col-1 d-flex align-items-center mb-3">
+                            <img src="{{ $follower_user->profile->profileImage() }}" class="rounded-circle mr-2" style="width: 40px" alt="">
+                            <a class="profile_modal_users_list"  href="/profile/{{ $follower_user->id }}">
+                                {{ $follower_user->username }}
+                            </a>
                         </div>   
                         @endforeach
                     </div>

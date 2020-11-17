@@ -23,7 +23,9 @@
     </div>
     <div class="row">
         <div class="col-6 offset-3">
-            <img src="/storage/{{ $post->image }}" class="w-100">
+            <a href="/p/{{ $post->id }}">
+                <img src="/storage/{{ $post->image }}" class="post-image w-100" alt="">
+            </a>
         </div>
     </div>
     <div class="row mt-2">

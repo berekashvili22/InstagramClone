@@ -61,5 +61,16 @@ class ProfilesController extends Controller
         
         return redirect("/profile/{$user->id}"); 
     }
+
+    public function search()
+    {
+
+        $search_text = $_GET['query'];
+        $users = User::where('username', 'LIKE', '%'.$search_text.'%')->get();
+        // dd($follows);
+        
+        return view('users.search', compact('users'));
+
+    }
 }
 

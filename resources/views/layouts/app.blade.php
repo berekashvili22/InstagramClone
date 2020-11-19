@@ -40,6 +40,10 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        {{-- search input --}}
+                        <form class="form-inline my-2 my-lg-0 pr-5" type="GET" action="{{ url('/search') }}">
+                            <input class="form-control mr-sm-2" type="search" name="query" placeholder="Search" aria-label="Search">
+                        </form>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -51,17 +55,33 @@
                                 </li>
                             @endif
                         @else
+                            <a class="navbar-username mt-2 mr-2" style="text-decoration: none;" href="{{ route('profile.show', Auth()->user()->id) }}">
+                                <strong>{{ Auth()->user()->username }}</strong> 
+                            </a>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                {{-- dropdown button --}}
+                                <a id="navbarDropdown" class="dropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="{{ Auth::user()->profile->profileImage() }}" class="rounded-circle mr-2" style="width: 40px" alt="">
                                 </a>
-
+                                {{-- dropdown items --}}
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('profile.show', Auth()->user()->id) }}">
+                                        <strong>Profile</strong> 
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <strong>Saved</strong> 
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('profile.edit', Auth()->user()->id) }}">
+                                        <strong>Settings</strong> 
+                                    </a>
+                                    <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <strong>{{ __('Logout') }}</strong> 
                                     </a>
+                                    
+                                   
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

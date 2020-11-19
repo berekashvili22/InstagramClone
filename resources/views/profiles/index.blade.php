@@ -10,9 +10,12 @@
             <div class="d-flex justify-content-between align-items-baseline">
                 <div class="d-flex align-items-center">
                     <div class="h4 mr-4">{{ $user->username }}</div>
-
-                    @if ($user->profile->id != auth()->user()->id)
-                        <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}" class="pb-1"></follow-button>
+                    @if (auth()->user())
+                        @if ($user->profile->id != auth()->user()->id ?? 0)
+                            <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}" class="pb-1"></follow-button>
+                        @endif
+                    @else
+                        <a href="{{ route('login') }}"><follow-button user-id="{{ $user->id }}" follows="{{ $follows }}" class="pb-1"></follow-button></a>
                     @endif
                     
                 </div>

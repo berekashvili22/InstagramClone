@@ -11,7 +11,7 @@
                     <h2>Edit Profile</h2>
                 </div>
                 <div class="form-group row">
-                    <label for="title" class="col-md-4 col-form-label">title</label>
+                    <label for="title" class="col-md-4 col-form-label"><strong>Title</strong></label>
                     <input  id="title"
                             type="text"
                             name="title"
@@ -25,7 +25,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label for="description" class="col-md-4 col-form-label">description</label>
+                    <label for="description" class="col-md-4 col-form-label"><strong>Description</strong></label>
                     <input  id="description"
                             type="text"
                             name="description"
@@ -39,7 +39,7 @@
                     @enderror
                 </div>
                 <div class="form-group row">
-                    <label for="url" class="col-md-4 col-form-label">url</label>
+                    <label for="url" class="col-md-4 col-form-label"><strong>Url</strong></label>
                     <input  id="url"
                             type="text"
                             name="url"
@@ -53,10 +53,8 @@
                     @enderror
                 </div>
                 <div class="row">
-                    <label for="image" class="col-md-4 col-form-label">Profile Image</label>
-
+                    <label for="image" class="col-md-4 col-form-label"><strong>Profile Image</strong></label>
                     <input type="file" class="form-control-file" id="image" name="image">
-
                     @error('image')
                         <strong>{{ $message }}</strong>
                     @enderror

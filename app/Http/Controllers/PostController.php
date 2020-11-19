@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Comments;
+use App\User;
+
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -45,17 +47,24 @@ class PostController extends Controller
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'image' => $imagePath,
-        ]); //sets foreing key to post automaticly & set image value to imagepath 
+        ]); //set foreing key to post automaticly & set image value to imagepath 
 
         return redirect('/profile/'. auth()->user()->id);
     }
 
     public function show(\App\Post $post) //fetch whole post instead of id
-    {
+    {   
         $post_id = $post->id;
         $comments = Comments::where('post_id', $post_id)->get();
+
+        $likers_ids = $post->likers()->pluck('users.id'); 
+        $liker_users = User::WhereIn('id', $likers_ids)->get();
+
+        $likes = (auth()->user()) ? auth()->user()->likes->contains($post->id) : false;
             
-        return view('posts.show', compact('post', 'comments'));
+        // dd($likes);
+
+        return view('posts.show', compact('post', 'comments', 'likes', 'liker_users'));
     }
 
 }

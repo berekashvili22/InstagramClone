@@ -21,7 +21,7 @@
 }
 
 .comments {
-    height: 50vh;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     /* background-color: red; */
@@ -38,3 +38,9 @@
 .comments::-webkit-scrollbar { 
     display: none; 
     }
+
+/* navbar */
+
+.navbar-username {
+    color: #333;
+}

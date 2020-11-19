@@ -22,7 +22,12 @@ Route::post('/p', 'PostController@store')->name('posts.store');
 
 Route::post('/p/comment', 'CommentsController@store')->name('comments.create');
 
+Route::post('like/{post}', 'PostLikecontroller@store');
+
 Route::get('/p/{post}', 'PostController@show')->name('posts.show');
+
+Route::get('/search', 'ProfilesController@search');
+
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');

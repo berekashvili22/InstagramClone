@@ -23,7 +23,7 @@
     </div>
     <div class="row">
         <div class="col-6 offset-3">
-            <a href="/p/{{ $post->id }}">
+            <a href="{{ route('posts.show', $post->id) }}">
                 <img src="/storage/{{ $post->image }}" class="post-image w-100" alt="">
             </a>
         </div>

@@ -17,7 +17,7 @@ Auth::routes(['verify' => true]);
 Route::post('follow/{user}', 'FollowsController@store');
 
 Route::get('/', 'PostController@index')->name('posts.index');
-Route::get('/p/create', 'PostController@create')->name('posts.create');
+Route::get('/p/create', 'PostController@create')->name('posts.create')->middleware('verified');
 Route::post('/p', 'PostController@store')->name('posts.store');
 
 Route::post('/p/comment', 'CommentsController@store')->name('comments.create');
